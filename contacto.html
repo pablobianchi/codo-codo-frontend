@@ -16,6 +16,8 @@
 
 
     <link rel="stylesheet" href="assets/css/styles.css">
+
+
   </head>
   <body>
     
@@ -50,19 +52,19 @@
     <div class="row g-5">
       
       <div class="col-md-12">
-        <form class="needs-validation" novalidate>
+        <form  id="frm-contacto" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
-              <label for="firstName" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="" value="" required>
               <div class="invalid-feedback">
                 dato requerido.
               </div>
             </div>
 
             <div class="col-sm-6">
-              <label for="lastName" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" placeholder="" value="" required>
               <div class="invalid-feedback">
                 dato requerido.
               </div>
@@ -71,23 +73,23 @@
 
             <div class="col-12">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required >
               <div class="invalid-feedback">
-                dato requerido.
+                dato requerido / verifique el formato
               </div>
             </div>
 
             <div class="col-12">
               <label for="address" class="form-label">Tel&eacute;fono</label>
-              <input type="text" class="form-control" id="address" placeholder="11-5555-5555" required>
+              <input type="text"  pattern="[0-9]+" class="form-control" id="telefono" placeholder="11-5555-5555" required>
               <div class="invalid-feedback">
-                dato requerido.
+                dato requerido / solo se admiten números
               </div>
             </div>
 
             <div class="col-12">
               <label for="address2" class="form-label">Comentarios </label>
-              <textarea class="form-control"></textarea>
+              <textarea class="form-control" id="comentarios"></textarea>
             </div>
 
            
@@ -95,7 +97,7 @@
 
        
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Enviar</button>
+          <button class="w-100 btn btn-primary btn-lg" type="button" id="btn-enviar">Enviar</button>
         </form>
       </div>
 
@@ -119,6 +121,41 @@
     Real State Propiedades &copy; 2021
   </footer>
 </div>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+   
+   //ENVIO FORMULARIO
+   document.getElementById( "btn-enviar").addEventListener('click', function (event) {
+
+
+    let checkOK = true;
+    let form  = document.getElementById( "frm-contacto");
+
+    form.classList.add("was-validated");
+
+
+      //2.- valido uno a uno los campos
+      Array.from(form.elements).forEach((input) => {
+
+        if( !input.checkValidity() ){
+          input.classList.add("invalid");
+          console.log( input.classList );
+          checkOK = false;
+        }
+      });
+
+
+      if( checkOK ){
+        alert( "Formulario Enviado" );
+        window.location.reload( );
+      }
+   });
+    
+   
+ 
+ });
+
+  </script>
 
 
 
