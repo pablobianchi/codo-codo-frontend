@@ -5,8 +5,7 @@ TP FrontEnd Codo a Codo 2021
     - 08-11 -> se agrega iframe con google maps
     - 09-11 -> se agrega validacion JS del formulario
     - 09-11 -> Iconos en menú
-
+    - 09-11 -> Google Fonts en Home
 
 ## PENDIENTES
  - Animación
- - Fonts Google
