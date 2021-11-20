@@ -100,11 +100,11 @@
     <div class="row g-5">
       
       <div class="col-md-7 col-md-12">
-        <form class="needs-validation" novalidate>
+        <form id="frm-tasacion"  novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="nombre" placeholder="Ingrese su Nombre" value="" required>
               <div class="invalid-feedback">
                 dato requerido.
               </div>
@@ -112,7 +112,7 @@
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="apellido" placeholder="Ingrese su Apellido" value="" required>
               <div class="invalid-feedback">
                 dato requerido.
               </div>
@@ -123,21 +123,21 @@
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
               <div class="invalid-feedback">
-                dato requerido.
+                dato requerido / verifique el formato
               </div>
             </div>
 
             <div class="col-12">
               <label for="address" class="form-label">Tel&eacute;fono</label>
-              <input type="text" class="form-control" id="address" placeholder="11-5555-5555" required>
+              <input type="text" class="form-control" pattern="[0-9]+"  id="telefono" placeholder="1155555555" required>
               <div class="invalid-feedback">
-                dato requerido.
+                dato requerido / solo se admiten números
               </div>
             </div>
 
             <div class="col-12">
               <label for="address" class="form-label">Tipo Propiedad</label>
-              <select class="form-control" required>
+              <select class="form-control" id="tipo_propiedad" required>
                 <option value="">--Seleccione--</option>
                 <option value="casa">Casa</option>
                 <option value="ph">PH</option>
@@ -152,8 +152,11 @@
             </div>
 
             <div class="col-12">
-              <label for="address2" class="form-label">Descripci&oacute;n de su propiedad </label>
-              <textarea class="form-control"></textarea>
+              <label class="form-label">Descripci&oacute;n de su propiedad </label>
+              <textarea class="form-control" name="descripcion" required></textarea>
+              <div class="invalid-feedback">
+                por favor ingrese una pequeña descripción de la propiedad
+              </div>
             </div>
 
            
@@ -161,7 +164,7 @@
 
        
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Enviar</button>
+          <button class="w-100 btn btn-primary btn-lg" type="button" id="btn-enviar">Enviar</button>
         </form>
       </div>
     </div>
@@ -173,10 +176,41 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
-
-  </script>
+  document.addEventListener('DOMContentLoaded', function () {
+     
+     //ENVIO FORMULARIO
+     document.getElementById( "btn-enviar").addEventListener('click', function (event) {
+  
+  
+      let checkOK = true;
+      let form  = document.getElementById( "frm-tasacion");
+  
+      form.classList.add("was-validated");
+  
+  
+        //2.- valido uno a uno los campos
+        Array.from(form.elements).forEach((input) => {
+  
+          if( !input.checkValidity() ){
+            input.classList.add("invalid");
+            console.log( input.classList );
+            checkOK = false;
+          }
+        });
+  
+  
+        if( checkOK ){
+          alert( "Formulario Enviado" );
+          window.location.reload( );
+        }
+     });
+      
+     
+   
+   });
+  
+    </script>
       
   </body>
 </html>
